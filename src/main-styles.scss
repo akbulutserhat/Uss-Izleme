@@ -1,0 +1,83 @@
+$yellow-dark:#FFC312;
+$black:#040404;
+$grey:#434343;
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    // This defines what 1rem is
+    font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5% 
+}
+
+body {
+    box-sizing: border-box;
+    font-family: 'Open sans' , Arial, Helvetica, sans-serif;
+    font-size:1.8rem;
+}
+
+a {
+    text-decoration: none;
+    letter-spacing: 0.16rem;
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
+
+h2 {
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color:$grey;
+}
+
+.button {
+    height: 5rem;
+    width: 12rem;
+    cursor: pointer;
+    transition: color 0.2s ease-out,border 0.2s ease-out,background-color 0.2s ease-out;
+    text-align: center;
+    outline: none;
+    border: none;
+    font-family:'Open Sans';
+    font-size:1.8rem;
+    border-radius: 5%;
+    font-weight:700;
+
+    &-yellow {
+        background-color: $yellow-dark;
+        color: $black;
+
+        &:hover {
+            background-color:transparent;
+            color:$yellow-dark;
+            border:solid 0.1rem $yellow-dark;
+        }
+    }
+
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: $yellow-dark !important;
+   }
+  
+  
+  
+ ::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: $yellow-dark !important;;
+  } 

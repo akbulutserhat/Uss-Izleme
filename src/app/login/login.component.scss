@@ -1,0 +1,56 @@
+@import '../../main-styles.scss';
+
+
+.login-section {
+    background-color: rgba(0,0,0,0.5) !important;
+    height: 50rem;
+    width: 50rem;
+    border-radius:3%;
+
+    .login-title {
+        padding:4rem 0 2rem;
+        border-bottom: solid 0.1rem $yellow-dark;
+        width:100%;
+        display:flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        h2 {
+            margin-left:3rem;
+            margin-bottom:2rem;
+            color:$yellow-dark;
+        }
+    }
+
+    .form-section {
+        form {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            height: 40rem;
+            padding-top:3rem;
+
+            color:$yellow-dark;
+         
+
+            mat-form-field {
+                width:45rem;
+                
+                mat-label {
+                   color:$yellow-dark;
+                    span {
+                        width:2rem;
+                        padding:1rem;
+                        margin-right:1rem;
+                    }
+                }
+                
+            }
+
+            button {
+                margin-top:2rem;
+            }
+        }
+    }
+}

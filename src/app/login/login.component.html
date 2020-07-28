@@ -1,0 +1,20 @@
+<div class="center">
+    <div class="login-section">
+        <div class="login-title">
+            <h2>Giriş Yap</h2>
+        </div>
+        <div class="form-section">
+            <form #loginForm='ngForm' (submit)="onSubmitted(loginForm)">
+                <mat-form-field appearance="standard">
+                    <mat-label><span matPrefix><i class="fas fa-user"></i></span>Kullanıcı Adı</mat-label>
+                    <input [(ngModel)]="formItem.kullanici"  name="kullanici" matInput autocomplete="off">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label><span matPrefix><i class="fas fa-key"></i></span>Şifre</mat-label>
+                    <input [(ngModel)]="formItem.sifre" type="password" name="sifre" matInput>
+                </mat-form-field>
+                <button type="submit" class="button button-yellow">Onayla</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="top-bar-section">
+    <div class="title-section">
+        <h2>Proje Adı</h2>
+    </div>
+    <div class="user-info">
+        <a class="user-button" [matMenuTriggerFor]="beforeMenu">Serhat Akbulut <i class="fas fa-caret-down"></i></a>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+            <button mat-menu-item>Test</button>
+            <button mat-menu-item (click)="LogoutClicked()">Çıkış Yap</button>
+        </mat-menu>
+    </div>
+</div>
+
+
+

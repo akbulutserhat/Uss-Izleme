@@ -1,0 +1,15 @@
+.top-bar-section {
+    width: 100%;
+    height: 8rem;
+    background-color: grey;
+
+    .title-section {
+        float: left;
+        margin: 2rem 0 0 2rem;
+    }
+
+    .user-info {
+        float: right;
+        margin: 3rem 4rem 0 0;
+    }
+}
