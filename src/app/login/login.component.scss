@@ -3,12 +3,12 @@
 
 .login-section {
     background-color: rgba(0,0,0,0.5) !important;
-    height: 50rem;
+    height: 40rem;
     width: 50rem;
     border-radius:3%;
 
     .login-title {
-        padding:4rem 0 2rem;
+        padding:2rem 0 2rem;
         border-bottom: solid 0.1rem $yellow-dark;
         width:100%;
         display:flex;
@@ -17,7 +17,7 @@
 
         h2 {
             margin-left:3rem;
-            margin-bottom:2rem;
+            //margin-bottom:2rem;
             color:$yellow-dark;
         }
     }

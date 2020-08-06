@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { AppState } from '../store/models/app-state.models';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanDeactivate } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { LoginComponent } from './login.component';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -16,7 +15,7 @@ export class LoginGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):boolean {
-     let logged = this.authService.loggedIn();
+     let logged = localStorage.getItem("token");
 
       if (logged) {
         return true;
@@ -24,5 +23,4 @@ export class LoginGuard implements CanActivate {
       this.router.navigate(["login"]);
       return false;
   }
-  
 }

@@ -1,0 +1,62 @@
+<!--<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Library</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Data</li>
+    </ol>
+  </nav>
+-->
+<div class="main-section row">
+    <div class="left-section col-3">
+        <button class="tip-button" (click)="Tip1ButtonClicked()">Tip 1 Kullanıcıları 
+            <i [ngClass]="tip1ButtonClicked?'fas fa-chevron-circle-up':'fas fa-chevron-circle-down'"></i>
+        </button>
+        <div *ngIf="tip1ButtonClicked">
+            <div class="list-section" *ngIf="kullaniciListesi$ | async">
+                <ul *ngFor="let kullanici of kullaniciListesi$ | async;index as i">
+                    <li [ngClass]="isButtonClicked[i]?'clicked':''" (click)="isButtonClicked[i]=true"><button (click)="kullaniciClicked(kullanici.id)">{{kullanici.adi}}</button></li>
+                </ul>
+            </div>
+        </div>
+        <button class="tip-button" (click)="Tip2ButtonClicked()">Tip 2 Kullanıcıları 
+            <i [ngClass]="tip2ButtonClicked?'fas fa-chevron-circle-up':'fas fa-chevron-circle-down'"></i>
+        </button>
+        <div *ngIf="tip2ButtonClicked">
+            <div class="list-section" *ngIf="kullaniciListesi$ | async">
+                <ul *ngFor="let kullanici of kullaniciListesi$ | async;index as i">
+                    <li [ngClass]="isButtonClicked[i]?'clicked':''" (click)="isButtonClicked[i]=true"><button (click)="kullaniciClicked(kullanici.id)">{{kullanici.adi}}</button></li>
+                </ul>
+            </div>
+        </div>
+       
+    </div>
+    <div class="middle-section col-3">
+        <div class="list-section" *ngIf="yetkiListesi$ | async">
+            <ul *ngFor="let yetki of yetkiListesi$ | async">
+                <li><button (click)="yetkiClicked(yetki)">{{yetki.adi}}</button></li>
+            </ul>
+        </div>
+    </div>
+    <div class="right-section col-6">
+        <div class="list-section" *ngIf="yetkiHastaneDetayListesi$ | async">
+            <ul *ngFor="let yetkiHastaneDetay of yetkiHastaneDetayListesi$ | async;index as i">
+                <li (click)="yetkiDetay=yetkiHastaneDetay">
+                    <div class="hastane-bina-section">
+                        <p class="hastane-adi">{{yetkiHastaneDetay.hastane_adi}}</p>
+                        <p class="bina-adi">{{yetkiHastaneDetay.adi}}</p>
+                    </div>
+                    <mat-checkbox class="check-box" color="primary" 
+                     [(ngModel)]="sahiplikFlagi[i]" (change)="changeCheckBox($event)"></mat-checkbox>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="yetkiHizmetDetayListesi$ | async">
+            <ul *ngFor="let yetkiHizmetDetay of yetkiHizmetDetayListesi$ | async;index as i">
+                <li (click)="yetkiDetay=yetkiHizmetDetay">{{yetkiHizmetDetay.adi}}
+                   <mat-checkbox color="primary" class="check-box" 
+                   [(ngModel)]="sahiplikFlagi[i]" (change)="changeCheckBox($event)"></mat-checkbox>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

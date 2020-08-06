@@ -1,8 +1,7 @@
-<div class="main-container">
-  <app-top-bar></app-top-bar>
-  <div class="navbar-pages-container">
-    
+<div class="main-container container-fluid">
+  <app-top-bar *ngIf="isLogin$ | async"></app-top-bar>
+  <div [ngClass]="(isLogin$ | async)?'navbar-pages-container':'not-login-class'">
+    <app-nav-bar *ngIf="isLogin$ | async"></app-nav-bar>
     <router-outlet></router-outlet>
   </div>
-  
 </div>

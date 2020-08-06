@@ -1,6 +1,9 @@
 $yellow-dark:#FFC312;
 $black:#040404;
 $grey:#434343;
+$grey-light:#f9fafb;
+$white:#fff;
+$border-color:rgba(0,0,0,.0625);
 
 *,
 *::after,
@@ -17,14 +20,21 @@ html {
 
 body {
     box-sizing: border-box;
-    font-family: 'Open sans' , Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans' , Arial, Helvetica, sans-serif;
     font-size:1.8rem;
+    width: 100%;
 }
 
 a {
     text-decoration: none;
     letter-spacing: 0.16rem;
     cursor: pointer;
+
+    &:active, &:focus {
+        outline: 0;
+        border: none;
+        -moz-outline-style: none;
+      }
 }
 
 li {

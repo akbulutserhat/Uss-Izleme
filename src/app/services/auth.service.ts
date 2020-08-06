@@ -5,7 +5,7 @@ import { auditTime, map, catchError } from 'rxjs/operators';
 import { LoginItem } from '../store/models/login-item.models';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/models/app-state.models';
-import { LogOutAction, LoginActionSuccess, LoginActionFailure } from '../store/actions/auth.actions';
+import { LogOutAction, LoginActionSuccess, LoginActionFailure, GetLoginStatus } from '../store/actions/auth.actions';
 import { UserItem } from '../store/models/user-item-models';
 import { of, Observable } from 'rxjs';
 
@@ -33,10 +33,12 @@ export class AuthService {
     ); 
   }
 
-  loggedIn() {
+  loggedIn():any {
     const token = localStorage.getItem("token");
-    return (token)? true:false;
-    
+    if(token)
+      {return this.store.dispatch(new GetLoginStatus(true))}
+    else
+      {return this.store.dispatch(new GetLoginStatus(false))};   
   }
 
   logOut() {

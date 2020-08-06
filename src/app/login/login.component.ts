@@ -14,13 +14,18 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService:AuthService,private router:Router) { }
+  constructor(private authService:AuthService,private router:Router) {
+   
+   }
 
   
   ngOnInit(): void {
+    (localStorage.getItem("token"))?
+    this.router.navigate(['dashboard']):'';
   }
 
   formItem:LoginItem = { kullanici:'',sifre:''};
+
   onSubmitted(form:NgForm) {
     this.authService.login(this.formItem).subscribe(
       _next => {

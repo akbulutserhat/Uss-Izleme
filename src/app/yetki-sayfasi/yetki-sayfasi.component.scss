@@ -1,0 +1,114 @@
+@import '../../main-styles.scss';
+
+nav {
+    ul {
+        background-color: $white;
+    }
+}
+
+
+
+.main-section {
+    //display: flex;
+    width: 84.1vw;
+    height:100%;
+    
+    .list-section {
+        //padding: 1rem;
+        
+        ul {
+            font-family: 'Open Sans' Arial;
+            font-size: 1.4rem;
+            .clicked {
+                background-color: darken($white, 20%);
+            }
+            li {
+                padding: 1rem;
+                border-bottom: 1px solid $border-color;
+
+                &:hover {
+                    background-color: darken($white, 5%);
+                }
+
+                button {
+                    outline: none;
+                    width: 100%;
+                    text-align: left;
+                    border: none;
+                    padding: 0.5rem;
+                    background-color: transparent;
+                    cursor: pointer;
+
+                }
+            }
+        }
+    }
+    .left-section {
+        background-color: $white;
+        height: inherit;
+        border: 1px solid rgba(0,0,0,.0625);
+        //flex:1;
+        
+        .tip-button {
+            outline: none;
+            width: 100%;
+            text-align: left;
+            border: none;
+            padding: 1rem;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-bottom: 1px solid lighten($grey, 60%);
+
+            i {
+                float: right;
+            }
+        }
+        
+    }
+    
+    .middle-section {
+        background-color: $white;
+        height: inherit;
+        border: 1px solid rgba(0,0,0,.0625);
+        //flex:1;
+    }
+
+    .right-section {
+        background-color: $white;
+        height: inherit;
+        border: 1px solid rgba(0,0,0,.0625);
+        //flex:2;
+
+
+        li {
+            display: flex;
+
+            .hastane-bina-section {
+                display: flex;
+                flex-direction: column;
+
+                .hastane-adi {
+                    font-family: 'Open Sans' Arial;
+                    font-size: 1.6rem;
+                }
+    
+                .bina-adi {
+                    font-family: 'Open Sans' Arial;
+                    font-size: 1.2rem;
+                    text-transform: lowercase;
+
+                    &::first-letter {
+                        text-transform: capitalize;
+                    }
+                }
+            }
+
+            .check-box {
+                margin:.4rem 0 0 1.5rem;
+            }
+        }
+
+       
+    }
+}
