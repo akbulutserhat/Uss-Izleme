@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../store/models/app-state.models';
-import { ChangeToggleStateAction } from '../store/actions/helper.actions';
 
 @Component({
   selector: 'app-top-bar',
@@ -12,8 +11,10 @@ import { ChangeToggleStateAction } from '../store/actions/helper.actions';
 })
 export class TopBarComponent implements OnInit {
 
+  @Output() changeToggle = new EventEmitter() 
+
   constructor(private authService:AuthService,private router:Router
-    ,private store:Store<AppState>) {
+    ) {
      
      }
 
@@ -21,7 +22,7 @@ export class TopBarComponent implements OnInit {
   }
 
   changeToggleState() {
-    this.store.dispatch(new ChangeToggleStateAction());
+    this.changeToggle.emit();
   }
 
   LogoutClicked() {

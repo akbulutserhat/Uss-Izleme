@@ -1,9 +1,38 @@
+
+
+$blue-primary:#6777ef;
+$blue-secondary:#4c60da;
+
 $yellow-dark:#FFC312;
 $black:#040404;
 $grey:#434343;
 $grey-light:#f9fafb;
 $white:#fff;
 $border-color:rgba(0,0,0,.0625);
+
+$blue: #83e4e2;
+$green: #a2ed56;
+$green-dark:#026428;
+$yellow: #fddc32;
+$orange:#ff4e00;
+$red:#dc3545;
+
+@keyframes top-to-down {
+  0% { transform: translateY(-6rem);}
+  50%{ transform: translateY(6rem);}
+  100% { transform: translateY(0);}
+}
+
+@keyframes slide-bottom-to-top {
+  0% { transform: translateY(12rem);opacity:0}
+  100% { transform: translateY(0);opacity:1}
+}
+
+@keyframes opacity-animation {
+  0% { opacity: 0;}
+  50% {opacity: 0.5;}
+  100% { opacity: 1;}
+}
 
 *,
 *::after,
@@ -20,7 +49,7 @@ html {
 
 body {
     box-sizing: border-box;
-    font-family: 'Open Sans' , Arial, Helvetica, sans-serif;
+    font-family: "Open Sans" , Arial, Helvetica, sans-serif;
     font-size:1.8rem;
     width: 100%;
 }
@@ -42,8 +71,9 @@ li {
 }
 
 h2 {
-    font-size: 2.4rem;
-    font-weight: 700;
+    font-family: "Open Sans" Arial;
+    font-size: 2.2rem;
+    font-weight: 500;
 }
 
 .center {
@@ -51,43 +81,216 @@ h2 {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color:$grey;
 }
 
 .button {
-    height: 5rem;
-    width: 12rem;
+    height: 3.4rem;
+    width: 8rem;
     cursor: pointer;
     transition: color 0.2s ease-out,border 0.2s ease-out,background-color 0.2s ease-out;
     text-align: center;
     outline: none;
     border: none;
     font-family:'Open Sans';
-    font-size:1.8rem;
+    font-size:1.3rem;
     border-radius: 5%;
     font-weight:700;
 
-    &-yellow {
-        background-color: $yellow-dark;
-        color: $black;
+    &-white {
+        background-color: $blue-primary;
+        color: $white;
+        border:solid 0.1rem $white;
 
         &:hover {
-            background-color:transparent;
-            color:$yellow-dark;
-            border:solid 0.1rem $yellow-dark;
+            background-color:darken($blue-primary,10%);
         }
     }
 
 }
 
-::ng-deep .mat-focused .mat-form-field-label {
-    /*change color of label*/
+.route-button {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    z-index: 100;
+    top:-2rem;
+}
+
+/*::ng-deep .mat-focused .mat-form-field-label {
     color: $yellow-dark !important;
    }
   
   
   
  ::ng-deep.mat-form-field-ripple {
-   /*change color of underline when focused*/
    background-color: $yellow-dark !important;;
-  } 
+  }
+*/
+ul {
+    font-family: 'Open Sans' Arial;
+    font-size: 1.4rem;
+    
+    .clicked {
+        background-color: darken($white, 20%);
+        &.list {
+            &:hover {
+                background-color:  darken($white, 20%);
+            }
+        }
+    }
+    .list {
+        padding: 1rem;
+        border-bottom: 1px solid $border-color;
+        &:hover {
+            background-color: darken($white, 5%);
+        }
+
+        .list-button {
+          font-family: "Open Sans" Arial;
+          
+          text-transform: capitalize;
+          font-size:1.3rem;
+            outline: none;
+            width: 100%;
+            text-align: left;
+            border: none;
+            padding: 0.5rem;
+            background-color: transparent;
+            cursor: pointer;
+
+        }
+    }
+}
+
+%boxshadow {
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0,0,0,0.05), 0 0.5rem 1.125rem rgba(75,0,0,0.05);
+}
+  
+
+.gradient-list {
+    counter-reset: gradient-counter;
+    list-style: none;
+    margin: 1.75rem 0;
+    padding-left: 1rem;
+    > li {
+      font-family: "Open Sans" Arial;
+      font-size:1.2rem;
+      background: white;
+      border-radius: 0 0.5rem 0.5rem 0.5rem;
+      @extend %boxshadow;
+      counter-increment: gradient-counter;
+      margin-top: 1rem;
+      min-height: 3rem;
+      padding: 1rem 1rem 1rem 3rem;
+      position: relative;
+      &::before,
+      &::after {
+        background: linear-gradient(135deg, $blue 0%,$green 100%);
+        border-radius: 1rem 1rem 0 1rem;
+        content: '';
+        height: 3rem;
+        left: -1rem;
+        overflow: hidden;
+        position: absolute;
+        top: -1rem;
+        width: 3rem;
+      }
+      &::before {
+        align-items: center;
+        @extend %boxshadow;
+        content: counter(gradient-counter);
+        color: $white; 
+        display: flex;
+        font-weight: 700;
+        justify-content: center;
+        padding: 0.125em 0.25em;
+        z-index: 1;
+      }
+      @for $i from 1 through 5 {
+        &:nth-child(10n+#{$i}):before {
+          background: linear-gradient(135deg, rgba($green, $i * 0.2) 0%,rgba($yellow, $i * 0.2) 100%);
+        }
+      }
+      @for $i from 6 through 10 {
+        &:nth-child(10n+#{$i}):before {
+          background: linear-gradient(135deg, rgba($green, 1 - (($i - 5) * 0.2)) 0%,rgba($yellow, 1 - (($i - 5) * 0.2)) 100%);
+        }
+      }
+      + li {
+        margin-top: 2rem;
+      }
+    }
+}
+
+.search-form {
+  position: relative;
+  width: 100%;
+  height: 3.4rem;
+  border-right: 1px solid $border-color;
+  font-family: "Open Sans" Arial;
+  font-size:1.4rem;
+  .search-label {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+  }
+  .search-input {
+    font-family: "Open Sans" Arial;
+    height: 100%;
+    outline: 0;
+    width: 100%;
+    background: $white;
+    padding: 0 1.6rem;
+    border:0;
+    appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
+    transition: all .3s cubic-bezier(0, 0, 0.43, 1.49);
+    transition-property: width, border-radius;
+    z-index: 1;
+    position: relative;
+
+    &:not(:placeholder-shown) {
+      width: calc(100% - 6rem);
+      +.search-button {
+        display: block;
+      }
+    }
+  }
+
+  .search-button {
+    display: none;
+    position: absolute;
+    outline:none;
+    top: 0;
+    right: 0;
+    width: 6rem;
+    height: 3.4rem;
+    border:0;
+    font-weight: 500;
+    color:$white;
+    background: $red;
+    border-radius: 0 .3rem .3rem 0;
+
+    &:hover {
+      cursor: pointer;
+      background-color: lighten($red,5%);
+    }
+  }
+}
+
+.snackbar-class {
+  background: $green-dark;
+  color:$white;
+}
+
+
+
+
+

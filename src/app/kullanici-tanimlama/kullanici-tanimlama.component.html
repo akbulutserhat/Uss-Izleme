@@ -1,1 +1,123 @@
-<p>kullanici-tanimlama works!</p>
+<div class="main-section row no-gutters">
+    <div id="user-list-section" class="card left-section mr-3 col-lg col-sm-12">
+        <button (click)="goGrupList()" 
+        class="d-block d-md-none btn btn-primary route-button">Grup<br>Listesine<br>Git</button>
+        <div class="header row">
+            <div class="header-title row">
+                <p>Kullanıcıya Göre Liste</p>
+            </div>
+            <div class="header-actions row">
+                <form *ngIf="!kullaniciFormunuAc" class="search-form col-8 col-md-9" role="search">
+                    <label class="search-label" for="search">Kullanıcı Ara</label>
+                    <input class="search-input" [(ngModel)]="searchUserText" name="searchUserText"
+                     id="search" type="text" autocomplete="off" 
+                     placeholder="Kullanıcı Ara..." autofocus required />
+                    <button class="search-button" type="reset">
+                        <i class="fas fa-times"></i>
+                    </button>    
+                </form>
+                <button class="btn btn-success add-button col-4 col-md-3" 
+                (click)="kullaniciEklemeClicked()">Kullanıcı Ekle</button>
+            </div>
+            
+        </div>
+        <!-- Kullanıcı Form kısmı -->
+        <app-form *ngIf="kullaniciFormunuAc" [tipi]="1" 
+        [formTipi]="formTipi" (cancelClicked)="cancelForm()"></app-form>
+        <div *ngIf="(kullaniciListe$  | async ) && !kullaniciFormunuAc" class="kullanici-liste">
+            <ul class="card"> 
+                <li *ngFor="let kullanici of kullaniciListe$ | async 
+                | searchOptions: searchUserText;index as i"
+                 class="list" [ngClass]="(isKullaniciButtonClicked[i] && !ayniKullaniciMi)?'clicked':''" 
+                (click)="isKullaniciButtonClicked[i]=true">
+                    <button class="main-button list-button" (click)="kullaniciClicked(kullanici)">
+                        {{kullanici.adi | lowercase}}
+                        <div class="button-group">
+                            <button (click)="kullaniciyaGrupEkleClicked()" 
+                            class="btn btn-primary add-sub-button">Grup Ekle</button>
+                            <button (click)="kullaniciSil(kullanici.id)" 
+                            class="btn btn-danger delete-button">Sil</button>
+                        </div>
+                    </button>
+                    <app-form 
+                    *ngIf="isKullaniciButtonClicked[i] && kullaniciyaGrupEkleFormunuAc" 
+                    [tipi]="1" [formTipi]="formTipi" [kullanici]="kullanici" 
+                    (cancelClicked)="cancelForm()"></app-form>
+                    <div *ngIf="isKullaniciButtonClicked[i] && !ayniKullaniciMi">
+                        <div *ngIf="kullaniciyaGoreGrupListesi$ | async" class="sub-item-section"> 
+                            <ul class="gradient-list">
+                                <li *ngFor="let kullaniciyaGoreGrup of kullaniciyaGoreGrupListesi$ | async"
+                                 class="sub-item">
+                                    {{kullaniciyaGoreGrup.adi}}
+                                    <button (click)="kullanicidanGrupSil(
+                                        {KULLANICI_ID:kullanici.id,
+                                            GRUP_ID:kullaniciyaGoreGrup.grup_id})" 
+                                    class="btn btn-danger delete-button float-right">Sil</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="group-list-section" class="card right-section col-lg col-sm-12 mt-5 mt-md-0">
+        <button (click)="goUserList()" 
+        class="d-block d-md-none btn btn-primary route-button">Kullanıcı<br>Listesine<br>Git</button>
+        <div class="header row">
+            <div class="header-title row">
+                <p>Gruplara Göre Liste</p>
+            </div>
+            <div class="header-actions row">
+                <form *ngIf="!grupFormunuAc" class="search-form col-9" role="search">
+                    <label class="search-label" for="search">Grup Ara</label>
+                    <input class="search-input" id="search" type="text" 
+                    [(ngModel)]="searchGroupText" autocomplete="off" name="searchGroupText"
+                    placeholder="Grup Ara..." autofocus required />
+                    <button class="search-button" type="reset">
+                        <i class="fas fa-times"></i>
+                    </button>    
+                </form>
+                <button class="btn btn-success add-button col-3" (click)="grupEklemeClicked()">
+                    Grup Ekle</button>
+            </div>
+        </div>
+        <app-form *ngIf="grupFormunuAc" [tipi]="2" [formTipi]="formTipi" 
+        (cancelClicked)="cancelForm()"></app-form>
+        <div *ngIf="(grupListesi$ | async) && !grupFormunuAc">
+            <ul class="card">
+                <li *ngFor="let grup of grupListesi$ | async | searchOptions:searchGroupText;index as i" 
+                class="list" [ngClass]="(isGrupButtonClicked[i] && !ayniGrupMu)?'clicked':''" 
+                (click)="isGrupButtonClicked[i]=true">
+                <button class="list-button" 
+                    (click)="grupClicked(grup)">
+                    {{grup.adi}}
+                    <div class="button-group">
+                        <button (click)="grubaKullaniciEkleClicked()" 
+                        class="btn btn-primary add-sub-button">Kullanıcı Ekle</button>
+                        <button (click)="grupSil(grup.id)" 
+                        class="btn btn-danger delete-button">Sil</button>
+                    </div>
+                </button>
+                <app-form 
+                *ngIf="isGrupButtonClicked[i] && grubaKullaniciEkleFormunuAc" [tipi]="2"
+                [formTipi]="formTipi" [grup]="grup" (cancelClicked)="cancelForm()"></app-form>
+                    <div *ngIf="isGrupButtonClicked[i] && !ayniGrupMu">
+                        <div *ngIf="grubaGoreKullaniciListesi$ | async" class="sub-item-section"> 
+                            <ul class="gradient-list">
+                                <li *ngFor="let grubaGoreKullanici of grubaGoreKullaniciListesi$ | async" 
+                                class="sub-item">{{grubaGoreKullanici.adi}}
+                                    <button 
+                                    (click)="gruptanKullaniciSil(
+                                        {KULLANICI_ID:grubaGoreKullanici.kullanici_id,
+                                            GRUP_ID:grup.id})" 
+                                    class="btn btn-danger delete-button float-right">Sil</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

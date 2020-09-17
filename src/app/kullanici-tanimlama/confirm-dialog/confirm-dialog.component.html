@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Silme Onayı</h2>
+<mat-dialog-content class="mat-typography">
+  <p>Silmek istediğinize emin misiniz ?</p>
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+    <button class="btn btn-danger mr-3" mat-dialog-close>Vazgeç</button>
+    <button class="btn btn-success" [mat-dialog-close]="true" cdkFocusInitial>Onayla</button>
+</div>

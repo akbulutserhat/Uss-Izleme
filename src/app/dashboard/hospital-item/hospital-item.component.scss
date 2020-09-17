@@ -1,0 +1,61 @@
+
+
+.row {
+    margin:0;
+    font-family: 'Open Sans' Arial, Helvetica, sans-serif;
+    font-size:1.3rem;
+    color:darken(grey,25%);
+}
+
+.divider {
+    border-bottom:1px solid lightgray;
+    width: 100%;
+}
+
+.card {
+    -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+
+    h3 {
+        font-size:1.6rem;
+    }
+
+    .error-info-section {
+        position: absolute;
+        top:0;
+        left:0;
+        height: 100%;
+        width: 100%;
+        background-color:grey;
+        color:white;
+        animation-name:slide-bottom-to-top;
+        animation-duration: .4s;
+        animation-timing-function: ease-in-out;
+        button {
+            position: absolute;
+            right: 1rem;
+            bottom:1rem;
+                background:none;
+                outline:none;
+                border:none;
+                color:white;
+            .icon {
+                color:white;
+            }
+        }
+       
+    }
+}
+
+.three-dots {
+    background-color:transparent;
+    outline:0;
+    i {
+        color:darken(grey,10%);
+    }
+    
+    &:hover {
+        background-color:darken(white,5%);
+    }
+}
+

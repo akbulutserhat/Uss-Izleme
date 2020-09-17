@@ -1,16 +1,32 @@
-<div class="top-bar-section">
-    <button class="btn btn-primary" (click)="changeToggleState()">Toggle</button>
-    <div class="title-section">
-        <h2>Proje Adı</h2>
-    </div>
-    <div class="user-info">
-        <a class="user-button" [matMenuTriggerFor]="beforeMenu">Serhat Akbulut <i class="fas fa-caret-down"></i></a>
-        <mat-menu #beforeMenu="matMenu" xPosition="before">
-            <button mat-menu-item>Test</button>
-            <button mat-menu-item (click)="LogoutClicked()">Çıkış Yap</button>
-        </mat-menu>
-    </div>
-</div>
+
+<nav class="navbar navbar-expand navbar-light topbar mb-4 static-top">
+    <button id="sidebarToggleTop" class="btn btn-link" (click)="changeToggleState()">
+        <i class="fa fa-bars fa-lg ml-5 p-2"></i></button>
+    <ul class="navbar-nav ml-auto">
+        <div class="topbar-divider d-none d-sm-block"></div>
+        <li class="nav-item mr-4 dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            <img class="img-profile" src="assets/img/boy.png">
+            <span class="ml-2 d-none d-md-inline text-white small">Serhat Akbulut</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="userDropdown">
+            <a class="dropdown-item">
+              <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+              Profile
+            </a>
+            <a class="dropdown-item">
+              <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+              Settings
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="LogoutClicked()">
+              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+              Logout
+            </a>
+          </div>
+        </li>
+      </ul>
+</nav>
 
 
 

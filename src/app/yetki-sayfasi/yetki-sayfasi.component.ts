@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { YetkiService,KullaniciDetayiBody } from '../services/yetki.service';
-import { KullaniciItem } from '../store/models/yetki/kullanici-item.models';
+import { KullaniciItem } from '../store/models/kullanici-item.models';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../store/models/app-state.models';
@@ -8,6 +8,7 @@ import { YetkiItem } from '../store/models/yetki/yetki-item.models';
 import { YetkiHastaneDetayItem } from '../store/models/yetki/yetki-detay/yetki-hastane-detay-item.models';
 import { YetkiHizmetDetayItem } from '../store/models/yetki/yetki-detay/yetki-hizmet-detay-item.models';
 import { ButunListeleriTemizle, KullaniciHaricListeleriTemizle } from '../store/actions/yetki.actions';
+import { KullaniciService } from '../services/kullanici.service';
 
 @Component({
   selector: 'app-yetki-sayfasi',
@@ -29,14 +30,19 @@ export class YetkiSayfasiComponent implements OnInit {
   
   yetkiDetay:any;
 
+  isKullaniciClicked:boolean = false;
+  isYetkiClicked:boolean = false;
+
   tip1ButtonClicked:boolean = false;
   tip2ButtonClicked:boolean = false;
 
   isButtonClicked:Array<Boolean>=[];
+  isYetkiButtonClicked:Array<Boolean>=[];
 
   sahiplikFlagi:Array<Boolean>=[];
 
-  constructor(private yetkiServis:YetkiService,private store:Store<AppState>) { 
+  constructor(private yetkiServis:YetkiService,private store:Store<AppState>
+    ,private kullaniciServis:KullaniciService) { 
       this.kullaniciListesi$=this.store.pipe(select(state => state.yetki.kullaniciListesi));
       this.yetkiListesi$ = this.store.pipe(select(state => state.yetki.yetkiListesi));
       this.yetkiHastaneDetayListesi$ = this.store.pipe(
@@ -50,16 +56,19 @@ export class YetkiSayfasiComponent implements OnInit {
   } 
 
   ngOnInit(): void {
-    this.store.dispatch(new KullaniciHaricListeleriTemizle());
+    this.store.dispatch(new ButunListeleriTemizle());
   }
 
   Tip1ButtonClicked() {
+    this.isKullaniciClicked = false;
+    this.isYetkiClicked = false;
     this.tip1ButtonClicked = !this.tip1ButtonClicked;
     this.tip2ButtonClicked = false;
     if(this.tip1ButtonClicked) {
       this.yetkiServis.KullaniciListele({TIPI:1,AKTIF:1}).subscribe(
         _next => {
-          console.log('Kullanıcı Listelendi');
+          this.kullaniciListesi$=this.store.pipe(select(state => state.yetki.kullaniciListesi));
+          console.log('Kullanıcı Listelendi!');
         },
         _error => {
           console.log('Kullanıcı Listelenemedi');
@@ -72,11 +81,14 @@ export class YetkiSayfasiComponent implements OnInit {
   }
 
   Tip2ButtonClicked() {
+    this.isKullaniciClicked = false;
+    this.isYetkiClicked = false;
     this.tip2ButtonClicked = !this.tip2ButtonClicked;
     this.tip1ButtonClicked = false;
     if(this.tip2ButtonClicked) {
       this.yetkiServis.KullaniciListele({TIPI:2,AKTIF:1}).subscribe(
         _next => {
+          this.kullaniciListesi$=this.store.pipe(select(state => state.yetki.kullaniciListesi));
           console.log('Kullanıcı Listelendi');
         },
         _error => {
@@ -90,6 +102,8 @@ export class YetkiSayfasiComponent implements OnInit {
   }
 
   kullaniciClicked(id:number) {
+    this.isKullaniciClicked = false;
+    this.isYetkiClicked = false;
     this.kullaniciListesi$.forEach(array => {
       for (let index = 0; index < array.length; index++) {
         this.isButtonClicked[index]=false;     
@@ -104,13 +118,50 @@ export class YetkiSayfasiComponent implements OnInit {
         console.log('Yetki Listelenemedi');
       }
     );
-    window.scroll(0,0);
+    this.goYetkiTipiSection();
     this.store.dispatch(new KullaniciHaricListeleriTemizle());
+
+    setTimeout(() => {
+      this.isKullaniciClicked = true;
+    },50);
   }
 
+  goYetkiTipiSection() {
+    if(window.innerWidth < 576) {
+      let usersSectionHeight = document.getElementById('users-section').scrollHeight;
+      window.scroll(0,usersSectionHeight);
+    }
+    
+  }
 
+  goUsersSection() {
+    window.scroll(0,0);
+  }
+
+  goDetailSection() {
+    /*let scrollHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );*/
+    
+    let usersHeight = document.getElementById('users-section').scrollHeight;
+    let yetkiHeight = document.getElementById('yetki-tipi-section').scrollHeight;
+    //let detailSectionHeight = document.getElementById('detail-section').scrollHeight;
+    if(window.innerWidth < 576) {
+      window.scroll(0,usersHeight+yetkiHeight + 30);
+    }
+   
+  }
 
   yetkiClicked(yetki:YetkiItem) {
+    this.goDetailSection();
+    this.isYetkiClicked = false;
+    this.yetkiListesi$.forEach(yetkiArray => {
+      for (let index = 0; index < yetkiArray.length; index++) {
+          this.isYetkiButtonClicked[index] = false;
+      }
+    })
     this.yetkiId = yetki.id;
      this.yetkiServis.YetkiDetayListeleme({YETKI_KODU:yetki.kodu}).subscribe(
       _next => {
@@ -132,6 +183,13 @@ export class YetkiSayfasiComponent implements OnInit {
         console.log('Yetki Detayları Listelenemedi');
       }
     )
+
+    setTimeout(() => {
+      this.isYetkiClicked = true;
+    },50)
+
+    
+    
   }
 
   kullaniciHastaneYetkiDetayinaSahipmi() {

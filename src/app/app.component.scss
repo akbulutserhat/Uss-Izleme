@@ -1,19 +1,72 @@
 @import '../main-styles.scss';
 
-.main-container {
-    height: 100%;
-    width: 100%;
+
+.wrapper {
+    //height: 100%;
+    //width: 100%;
+    display:flex;
     font-family: 'Open Sans' Arial;
     font-size:1.7rem;
-    .navbar-pages-container {
+
+    .content-wrapper {
+        background-color: #fafdfb;
+        width: 100%;
+        //overflow-x: hidden;
+
+        .content {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+
+            .container-fluid {
+                padding:0 2.2rem;
+                margin-right: auto;
+                 margin-left: auto;
+
+                 .breadcrumb-section {
+
+                    .h3 {
+                        color: #5a5c69 !important;
+                    }
+
+                    .breadcrumb {
+                        background-color: transparent;
+                        font-size: 1.2rem;
+                        font-weight: bold;
+                    }
+                    
+                 }
+            }
+        }
+    }
+    /*.navbar-pages-container {
         height: 100%;
         width: 100%;
         background-color: $grey-light;
         display: flex;
-    }
+    }*/
 
     .not-login-class {
         height: 100vh;
         width: 100vw;
     }
+}
+
+.has-search {
+    .form-control {
+        padding-left: 2.7rem;
+        font-size:1.2rem;
+        padding-right: 1rem;
+    }
+
+    .form-control-feedback {
+        position: absolute;
+        z-index: 2;
+        width: 2.7rem;
+        height: 2.7rem;
+        line-height: 2.7rem;
+        text-align: center;
+        pointer-events: none;
+        color: #aaa;
+      }
 }

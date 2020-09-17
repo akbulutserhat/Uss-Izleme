@@ -1,5 +1,5 @@
 import { YetkiActions, YetkiActionTypes } from "../actions/yetki.actions";
-import { KullaniciItem } from "../models/yetki/kullanici-item.models";
+import { KullaniciItem } from "../models/kullanici-item.models";
 import { YetkiItem } from '../models/yetki/yetki-item.models';
 import { YetkiHastaneDetayItem } from '../models/yetki/yetki-detay/yetki-hastane-detay-item.models';
 import { YetkiHizmetDetayItem } from '../models/yetki/yetki-detay/yetki-hizmet-detay-item.models';
@@ -62,7 +62,7 @@ export function YetkiReducer(state:YetkiState = initialState,action:YetkiActions
                 yetkiListesi:action.payload,
                 loading:false
             }
-        /*case YetkiActionTypes.YETKI_KAYDETME_SUCCESS:
+        case YetkiActionTypes.YETKI_KAYDETME_SUCCESS:
             return {
                 ...state,
                 loading:false
@@ -71,7 +71,7 @@ export function YetkiReducer(state:YetkiState = initialState,action:YetkiActions
             return {
                 ...state,
                 loading:false
-            }*/
+            }
         case YetkiActionTypes.YETKI_HASTANE_DETAY_LISTELEME_SUCCESS:
             return {
                 ...state,

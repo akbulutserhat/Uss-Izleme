@@ -5,8 +5,8 @@ import { map, catchError, repeat, tap } from 'rxjs/operators';
 import { of, from } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/models/app-state.models';
-import { KullaniciListelemeSuccess, KullaniciListelemeFailure, YetkiListelemeSuccess, YetkiListelemeFailure, KullaniciYetkiHastaneDetayListelemeSuccess, KullaniciYetkiHizmetDetayListelemeSuccess, KullaniciYetkiHastaneDetayListelemeFailure, YetkiHastaneDetayListelemeSuccess, YetkiHizmetDetayListelemeSuccess, YetkiHastaneDetayListelemeFailure} from '../store/actions/yetki.actions';
-import { KullaniciItem } from '../store/models/yetki/kullanici-item.models';
+import { KullaniciListelemeSuccess, KullaniciListelemeFailure, YetkiListelemeSuccess, YetkiListelemeFailure, KullaniciYetkiHastaneDetayListelemeSuccess, KullaniciYetkiHizmetDetayListelemeSuccess, KullaniciYetkiHastaneDetayListelemeFailure, YetkiHastaneDetayListelemeSuccess, YetkiHizmetDetayListelemeSuccess, YetkiHastaneDetayListelemeFailure, YetkiKaydetmeSuccess, YetkiKaydetmeFailure, YetkiSilmeSuccess, YetkiSilmeFailure} from '../store/actions/yetki.actions';
+import { KullaniciItem } from '../store/models/kullanici-item.models';
 import { YetkiItem } from '../store/models/yetki/yetki-item.models';
 import { YetkiHastaneDetayItem } from '../store/models/yetki/yetki-detay/yetki-hastane-detay-item.models';
 import { YetkiHizmetDetayItem } from '../store/models/yetki/yetki-detay/yetki-hizmet-detay-item.models';
@@ -126,16 +126,18 @@ export class YetkiService {
   }
 
   yetkiKaydet(body:any) {
-    return this.http.post(environment.BACKEND_URL,body,yetkiKaydetHeader)
+    return this.http.post(environment.BACKEND_URL,body,{...yetkiKaydetHeader,responseType:'text'})
     .pipe(
-      catchError(err => of(console.log('kaydetme hatalı!')))
+      map(() => this.store.dispatch(new YetkiKaydetmeSuccess())),
+      catchError(err => of(this.store.dispatch(new YetkiKaydetmeFailure(err))))
     )
   }
 
   yetkiSil(body:any) {
-    return this.http.post(environment.BACKEND_URL,body,yetkiSilHeader)
+    return this.http.post(environment.BACKEND_URL,body,{...yetkiSilHeader,responseType:'text'})
     .pipe(
-      catchError(err => of(console.log('silme hatalı!')))
+      map(() => this.store.dispatch(new YetkiSilmeSuccess())),
+      catchError(err => of(this.store.dispatch(new YetkiSilmeFailure(err))))
     )
   }
 

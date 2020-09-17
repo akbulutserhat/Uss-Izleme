@@ -1,12 +1,29 @@
-<div class="navbar-section">
-    <ul class="links">
-        <li class="link"><a routerLink="/dashboard">Anasayfa</a></li>
-        <li class="link"><a routerLink="/yetki-sayfasi">Yetki Sayfası</a></li>
-        <li class="link"><a routerLink="/kullanici-tanimlama">Kullanıcılar</a></li>
-        <li class="link"><a>Deneme</a></li>
-        <li class="link"><a>Deneme</a></li>
-        <li class="link"><a>Deneme</a></li>
-        <li class="link"><a>Deneme</a></li>
-        <li class="link"><a>Deneme</a></li>
-    </ul>
-</div> 
+
+<ul *ngIf="toggleFlag" [ngClass]="toggleFlag?'':''" 
+    class="navbar-nav sidebar sidebar-light accordion">
+    <a (click)="navClicked()" class="sidebar-brand d-flex align-items-center justify-content-start" routerLink="/dashboard">
+        <div class="sidebar-brand-icon">
+            <img src="assets/img/logo/panates_logo.png">
+        </div>
+        <div class="sidebar-brand-text mx-3">Uss Izleme</div>
+    </a>
+        <li (click)="navClicked()" class="nav-item link"><a class="nav-link" routerLink="/dashboard">
+            <i class="fas fa-home mr-2 white"></i>Anasayfa</a></li>
+        <li (click)="navClicked()" class="nav-item link"><a class="nav-link" routerLink="/yetki-sayfasi">
+            <i class="fas fa-user-tag mr-2"></i>Yetki Sayfası</a></li>
+        <li (click)="navClicked()" class="nav-item link"><a class="nav-link" routerLink="/kullanici-tanimlama">
+            <i class="fas fa-users mr-2"></i>Kullanıcılar</a></li>
+        <li (click)="navClicked()" class="nav-item link"><a class="nav-link">
+            <i class="fas fa-random mr-2"></i>Deneme</a></li>
+        <li (click)="navClicked()" class="nav-item link"><a class="nav-link">
+            <i class="fas fa-random mr-2"></i>Deneme</a></li>
+        <li (click)="navClicked()" class="nav-item link"><a class="nav-link">
+            <i class="fas fa-random mr-2"></i>Deneme</a></li>
+        <li (click)="navClicked()" class="nav-item link"><a class="nav-link">
+            <i class="fas fa-random mr-2"></i>Deneme</a></li>
+        <li (click)="navClicked()" class="nav-item link"><a class="nav-link">
+            <i class="fas fa-random mr-2"></i>Deneme</a></li>
+</ul>
+
+
+

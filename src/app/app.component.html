@@ -1,7 +1,20 @@
-<div class="main-container container-fluid">
-  <app-top-bar *ngIf="isLogin$ | async"></app-top-bar>
-  <div [ngClass]="(isLogin$ | async)?'navbar-pages-container':'not-login-class'">
-    <app-nav-bar *ngIf="isLogin$ | async"></app-nav-bar>
-    <router-outlet></router-outlet>
+<div class="wrapper">
+  <app-nav-bar (navClick)="toggleFlag = false" [toggleFlag]="toggleFlag" *ngIf="isLogin$ | async"></app-nav-bar>
+  <div class="content-wrapper d-flex flex-column">
+    <div class="content">
+      <app-top-bar (changeToggle)="toggleFlag =!toggleFlag" *ngIf="isLogin$ | async"></app-top-bar>
+      <div [ngClass]="(isLogin$ | async)?'container-fluid':''">
+        <div *ngIf="(isLogin$ | async) && pageTitle !== 'Anasayfa'"
+        class="breadcrumb-section mb-5 d-sm-flex align-items-center justify-content-between">
+          <h1 class="h3 mb-0">{{pageTitle}}</h1>
+          <ol *ngIf="pageTitle !== 'Anasayfa'" class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/dashboard">Anasayfa</a></li>
+            <li class="breadcrumb-item active mr-4" aria-current="page">{{pageTitle}}</li>
+          </ol>
+        </div>
+        <router-outlet></router-outlet>
+      </div>
+      
+    </div>
   </div>
 </div>

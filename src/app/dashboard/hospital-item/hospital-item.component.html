@@ -1,0 +1,48 @@
+<div class="card col-12 p-4 mb-5">
+    <div class="row card-title d-flex justify-content-between mb-2 px-2">
+        <h3 class="mt-2">{{item.HASTANE_ADI}}</h3>
+        <div class="right-group d-flex align-items-center">
+            <p>{{item.TARIH}}</p>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="card-content row m-2">
+        <div class="col-md-6 col-12 mt-4" (click)="isCardClicked[i]=true"
+        *ngFor="let servis of item.SERVIS_BILGILERI 
+        | searchOptions:item.HASTANE_ADI.toLowerCase().includes(searchText)?'':searchText;index as i">
+            <div *ngIf="showMoreFlag?i<item.SERVIS_BILGILERI.length:i<2" class="card p-4" (click)="cardClicked()">
+                <div class="row card-title d-flex justify-content-between px-2">
+                    <h3>{{servis.ADI}}</h3>
+                    <p class="font-weight-bold" [ngClass]="servis.SERVIS_DURUMU == 1 ?'text-success':'text-danger'">
+                        {{servis.SERVIS_DURUMU == 1 ?'Aktif':'Aktif Değil'}}</p>
+                </div>
+                <div class="divider"></div>
+                <div class="card-content p-3">
+                    <p>Toplam Kuyruk: {{servis.TOPLAM_KUYRUK}}</p>
+                    <p>Başarılı İşlem: {{servis.BASARILI_ISLEM}}</p>
+                    <p>Başarısız İşlem: {{servis.BASARISIZ_ISLEM}}</p>
+                </div>
+                <div class="row w-100">
+                    <button class="btn btn-secondary w-100" 
+                    (click)="errorInfoFlag = !errorInfoFlag">Hata Bilgileri İçin Tıklayınız</button>
+                </div>
+                <div *ngIf="errorInfoFlag && isCardClicked[i]" class="card-footer error-info-section">
+                    <div class="error-item" *ngFor="let errorCode of objectKeys(servis.HATA_BILGILERI)">
+                        {{errorCode}} <i class="fas fa-arrow-right"></i> 
+                        {{servis.HATA_BILGILERI[errorCode].ACIKLAMA}}
+                        <span class="badge badge-danger">
+                            {{servis.HATA_BILGILERI[errorCode].ADET}}</span>
+                    </div>
+                    <button class="mt-4 float-right p-4" (click)="errorInfoFlag = false"><i class="icon fas fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button *ngIf="item.SERVIS_BILGILERI.length > 2" title="{{showMoreFlag?'Detayları Gizle':'Daha fazla detay için tıklayınız!'}}"
+    (click)="showMoreFlag =! showMoreFlag"
+    class="three-dots w-100 border-0 mt-3">
+        <i *ngIf="!showMoreFlag" class="fas fa-ellipsis-h"></i>
+        <i *ngIf="showMoreFlag" class="fas fa-minus"></i>
+    </button>
+</div>
+

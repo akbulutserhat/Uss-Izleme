@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { KullaniciItem } from '../models/yetki/kullanici-item.models';
+import { KullaniciItem } from '../models/kullanici-item.models';
 import { YetkiItem } from '../models/yetki/yetki-item.models';
 import { YetkiHastaneDetayItem } from '../models/yetki/yetki-detay/yetki-hastane-detay-item.models';
 import {  YetkiHizmetDetayItem } from '../models/yetki/yetki-detay/yetki-hizmet-detay-item.models'
@@ -11,10 +11,10 @@ export enum YetkiActionTypes {
     KULLANICI_HARICI_LISTELERI_TEMIZLE = '[YETKI]  KULLANICI HARICI LISTELERI TEMIZLE',
     YETKI_LISTELEME_SUCCESS = '[YETKI] YETKI LISTELEME SUCCESS',
     YETKI_LISTELEME_FAILURE = '[YETKI] YETKI LISTELEME FAILURE',
-    /*YETKI_KAYDETME_SUCCESS = '[YETKI] YETKI KAYDETME SUCCESS',
+    YETKI_KAYDETME_SUCCESS = '[YETKI] YETKI KAYDETME SUCCESS',
     YETKI_KAYDETME_FAILURE = '[YETKI] YETKI KAYDETME FAILURE',
     YETKI_SILME_SUCCESS = '[YETKI] YETKI SILME SUCCESS',
-    YETKI_SILME_FAILURE = '[YETKI] YETKI SILME FAILURE',*/
+    YETKI_SILME_FAILURE = '[YETKI] YETKI SILME FAILURE',
     YETKI_HASTANE_DETAY_LISTELEME_SUCCESS = '[YETKI] YETKI HASTANE DETAY LISTELEME SUCCESS',
     YETKI_HASTANE_DETAY_LISTELEME_FAILURE = '[YETKI] YETKI HASTANE DETAY LISTELEME FAILURE',
     YETKI_HIZMET_DETAY_LISTELEME_SUCCESS = '[YETKI] YETKI HIZMET DETAY LISTELEME SUCCESS',
@@ -23,6 +23,10 @@ export enum YetkiActionTypes {
     KULLANICI_YETKI_HASTANE_DETAY_LISTELEME_FAILURE = '[YETKI] KULLANICI YETKI HASTANE DETAY LISTELEME FAILURE',
     KULLANICI_YETKI_HIZMET_DETAY_LISTELEME_SUCCESS = '[YETKI] KULLANICI YETKI HIZMET DETAY LISTELEME SUCCESS',
     KULLANICI_YETKI_HIZMET_DETAY_LISTELEME_FAILURE = '[YETKI] KULLANICI YETKI HIZMET DETAY LISTELEME FAILURE'
+}
+
+export class ButunListeleriTemizle implements Action {
+    readonly type = YetkiActionTypes.BUTUN_LISTELERI_TEMIZLE;
 }
 
 export class KullaniciListelemeSuccess implements Action {
@@ -97,11 +101,9 @@ export class KullaniciYetkiHizmetDetayListelemeFailure implements Action {
     constructor(public payload:Error){}
 }
 
-export class ButunListeleriTemizle implements Action {
-    readonly type = YetkiActionTypes.BUTUN_LISTELERI_TEMIZLE;
-}
 
-/*export class YetkiKaydetmeSuccess implements Action {
+
+export class YetkiKaydetmeSuccess implements Action {
     readonly type = YetkiActionTypes.YETKI_KAYDETME_SUCCESS;
 }
 
@@ -119,7 +121,7 @@ export class YetkiSilmeFailure implements Action {
     readonly type = YetkiActionTypes.YETKI_SILME_FAILURE;
 
     constructor(public payload:Error){}
-}*/
+}
 
 export class KullaniciHaricListeleriTemizle implements Action {
     readonly type = YetkiActionTypes.KULLANICI_HARICI_LISTELERI_TEMIZLE;
@@ -140,4 +142,8 @@ export type YetkiActions = KullaniciListelemeSuccess |
                             KullaniciYetkiHizmetDetayListelemeFailure |
                             KullaniciYetkiHizmetDetayListelemeSuccess |
                             ButunListeleriTemizle | 
-                            KullaniciHaricListeleriTemizle 
+                            KullaniciHaricListeleriTemizle |
+                            YetkiKaydetmeSuccess |
+                            YetkiKaydetmeFailure |
+                            YetkiSilmeSuccess |
+                            YetkiSilmeFailure

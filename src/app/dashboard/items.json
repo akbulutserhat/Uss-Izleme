@@ -1,0 +1,357 @@
+[{
+    "HASTANE_ADI": "Hospital A",
+    "TARIH": "2020-08-21",
+    "SERVIS_BILGILERI": [
+         {
+            "ADI": "USS Servisi",
+            "TOPLAM_KUYRUK": 39512,
+            "BASARILI_ISLEM": 12350,
+            "BASARISIZ_ISLEM": 8734,
+            "SERVIS_DURUMU": 2,
+            "HATA_BILGILERI": {
+                "E341": {
+                    "ACIKLAMA": "TC Kimlik Numarasi Hatali",
+                    "ADET": 431
+                },
+                "E156": {
+                    "ACIKLAMA": "Takip Sistemde Bulunamamistir",
+                    "ADET": 131
+                },
+                "E002": {
+                    "ACIKLAMA": "Yatis Protokol Bilgisi Gonderimi Zorunlu",
+                    "ADET": 25
+                }
+            }
+        },
+        {
+            "ADI": "Teletip Servisi",
+            "TOPLAM_KUYRUK": 1421,
+            "BASARILI_ISLEM": 1235,
+            "BASARISIZ_ISLEM": 112,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E231": {
+                    "ACIKLAMA": "Accession Numarasi Hatali",
+                    "ADET": 12
+                },
+                "E056": {
+                    "ACIKLAMA": "HL7 Messaji Hatalidir",
+                    "ADET": 1
+                }
+            }
+        },
+        {
+            "ADI": "SMS Servisi",
+            "TOPLAM_KUYRUK": 121,
+            "BASARILI_ISLEM": 113,
+            "BASARISIZ_ISLEM": 8,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E121": {
+                    "ACIKLAMA": "Baglanti Saglanamadi",
+                    "ADET": 8
+                }
+            }
+        },
+        {
+            "ADI": "Email Servisi",
+            "TOPLAM_KUYRUK": 80,
+            "BASARILI_ISLEM": 80,
+            "BASARISIZ_ISLEM": 0,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {}
+        }
+    ]
+
+},
+{
+    "HASTANE_ADI": "Hospital B",
+    "TARIH": "2020-08-21",
+    "SERVIS_BILGILERI": [
+        {
+            "ADI": "USS Servisi",
+            "TOPLAM_KUYRUK": 21512,
+            "BASARILI_ISLEM": 12350,
+            "BASARISIZ_ISLEM": 3714,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E341": {
+                    "ACIKLAMA": "TC Kimlik Numarasi Hatali",
+                    "ADET": 431
+                },
+                "E156": {
+                    "ACIKLAMA": "Takip Sistemde Bulunamamistir",
+                    "ADET": 131
+                },
+                "E002": {
+                    "ACIKLAMA": "Yatis Protokol Bilgisi Gonderimi Zorunlu",
+                    "ADET": 25
+                }
+            }
+        },
+        {
+            "ADI": "Teletip Servisi",
+            "TOPLAM_KUYRUK": 421,
+            "BASARILI_ISLEM": 235,
+            "BASARISIZ_ISLEM": 12,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E231": {
+                    "ACIKLAMA": "Accession Numarasi Hatali",
+                    "ADET": 12
+                },
+                "E056": {
+                    "ACIKLAMA": "HL7 Messaji Hatalidir",
+                    "ADET": 1
+                }
+            }
+        },
+        {
+            "ADI": "SMS Servisi",
+            "TOPLAM_KUYRUK": 21,
+            "BASARILI_ISLEM": 13,
+            "BASARISIZ_ISLEM": 8,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E121": {
+                    "ACIKLAMA": "Baglanti Saglanamadi",
+                    "ADET": 8
+                }
+            }
+        },
+        {
+            "ADI": "Email Servisi",
+            "TOPLAM_KUYRUK": 40,
+            "BASARILI_ISLEM": 40,
+            "BASARISIZ_ISLEM": 0,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {}
+        }
+    ]
+
+},
+{
+    "HASTANE_ADI": "Hospital C",
+    "TARIH": "2020-08-21",
+    "SERVIS_BILGILERI": [
+         {
+            "ADI": "USS Servisi",
+            "TOPLAM_KUYRUK": 129512,
+            "BASARILI_ISLEM": 62350,
+            "BASARISIZ_ISLEM": 12734,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E341": {
+                    "ACIKLAMA": "TC Kimlik Numarasi Hatali",
+                    "ADET": 431
+                },
+                "E156": {
+                    "ACIKLAMA": "Takip Sistemde Bulunamamistir",
+                    "ADET": 131
+                },
+                "E002": {
+                    "ACIKLAMA": "Yatis Protokol Bilgisi Gonderimi Zorunlu",
+                    "ADET": 25
+                }
+            }
+        },
+        {
+            "ADI": "Teletip Servisi",
+            "TOPLAM_KUYRUK": 14211,
+            "BASARILI_ISLEM": 12325,
+            "BASARISIZ_ISLEM": 1212,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E231": {
+                    "ACIKLAMA": "Accession Numarasi Hatali",
+                    "ADET": 122
+                },
+                "E056": {
+                    "ACIKLAMA": "HL7 Messaji Hatalidir",
+                    "ADET": 11
+                }
+            }
+        },
+        {
+            "ADI": "SMS Servisi",
+            "TOPLAM_KUYRUK": 1521,
+            "BASARILI_ISLEM": 1413,
+            "BASARISIZ_ISLEM": 18,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E121": {
+                    "ACIKLAMA": "Baglanti Saglanamadi",
+                    "ADET": 18
+                }
+            }
+        },
+        {
+            "ADI": "Email Servisi",
+            "TOPLAM_KUYRUK": 123,
+            "BASARILI_ISLEM": 123,
+            "BASARISIZ_ISLEM": 0,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {}
+        }
+    ]
+
+},
+{
+    "HASTANE_ADI": "Hospital D",
+    "TARIH": "2020-08-21",
+    "SERVIS_BILGILERI": [
+        {
+            "ADI": "USS Servisi",
+            "TOPLAM_KUYRUK": 179512,
+            "BASARILI_ISLEM": 12350,
+            "BASARISIZ_ISLEM": 82734,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E341": {
+                    "ACIKLAMA": "TC Kimlik Numarasi Hatali",
+                    "ADET": 431
+                },
+                "E156": {
+                    "ACIKLAMA": "Takip Sistemde Bulunamamistir",
+                    "ADET": 131
+                },
+                "E002": {
+                    "ACIKLAMA": "Yatis Protokol Bilgisi Gonderimi Zorunlu",
+                    "ADET": 25
+                }
+            }
+        },
+        {
+            "ADI": "Teletip Servisi",
+            "TOPLAM_KUYRUK": 64211,
+            "BASARILI_ISLEM": 42325,
+            "BASARISIZ_ISLEM": 11212,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E231": {
+                    "ACIKLAMA": "Accession Numarasi Hatali",
+                    "ADET": 122
+                },
+                "E056": {
+                    "ACIKLAMA": "HL7 Messaji Hatalidir",
+                    "ADET": 11
+                }
+            }
+        },
+        {
+            "ADI": "SMS Servisi",
+            "TOPLAM_KUYRUK": 5521,
+            "BASARILI_ISLEM": 3413,
+            "BASARISIZ_ISLEM": 218,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E121": {
+                    "ACIKLAMA": "Baglanti Saglanamadi",
+                    "ADET": 218
+                }
+            }
+        },
+        {
+            "ADI": "Email Servisi",
+            "TOPLAM_KUYRUK": 1323,
+            "BASARILI_ISLEM": 1323,
+            "BASARISIZ_ISLEM": 0,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {}
+        }
+    ]
+
+},
+{
+    "HASTANE_ADI": "Hospital E",
+    "TARIH": "2020-08-21",
+    "SERVIS_BILGILERI": [
+        {
+            "ADI": "USS Servisi",
+            "TOPLAM_KUYRUK": 29512,
+            "BASARILI_ISLEM": 11350,
+            "BASARISIZ_ISLEM": 2734,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E341": {
+                    "ACIKLAMA": "TC Kimlik Numarasi Hatali",
+                    "ADET": 431
+                },
+                "E156": {
+                    "ACIKLAMA": "Takip Sistemde Bulunamamistir",
+                    "ADET": 131
+                },
+                "E002": {
+                    "ACIKLAMA": "Yatis Protokol Bilgisi Gonderimi Zorunlu",
+                    "ADET": 25
+                }
+            }
+        },
+        {
+            "ADI": "Teletip Servisi",
+            "TOPLAM_KUYRUK": 4211,
+            "BASARILI_ISLEM": 2325,
+            "BASARISIZ_ISLEM": 1212,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E231": {
+                    "ACIKLAMA": "Accession Numarasi Hatali",
+                    "ADET": 122
+                },
+                "E056": {
+                    "ACIKLAMA": "HL7 Messaji Hatalidir",
+                    "ADET": 11
+                }
+            }
+        },
+        {
+            "ADI": "SMS Servisi",
+            "TOPLAM_KUYRUK": 5521,
+            "BASARILI_ISLEM": 3413,
+            "BASARISIZ_ISLEM": 218,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E121": {
+                    "ACIKLAMA": "Baglanti Saglanamadi",
+                    "ADET": 218
+                }
+            }
+        },
+        {
+            "ADI": "Email Servisi",
+            "TOPLAM_KUYRUK": 1323,
+            "BASARILI_ISLEM": 1323,
+            "BASARISIZ_ISLEM": 0,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {}
+        },
+        {
+            "ADI": "Extreme Pacs Servisi",
+            "TOPLAM_KUYRUK": 12363,
+            "BASARILI_ISLEM": 11323,
+            "BASARISIZ_ISLEM": 100,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E362": {
+                    "ACIKLAMA": "Baglanti Saglanamadi",
+                    "ADET": 218
+                }
+            }
+        },
+        {
+            "ADI": "KDS Servisi",
+            "TOPLAM_KUYRUK": 152363,
+            "BASARILI_ISLEM": 61323,
+            "BASARISIZ_ISLEM": 12300,
+            "SERVIS_DURUMU": 1,
+            "HATA_BILGILERI": {
+                "E122": {
+                    "ACIKLAMA": "Ilgili TAblo Bulunamamistir",
+                    "ADET": 218
+                }
+            }
+        }
+    ]
+
+}
+]

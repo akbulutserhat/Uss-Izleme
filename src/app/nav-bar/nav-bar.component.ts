@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AppState } from '../store/models/app-state.models';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -10,12 +10,17 @@ import { Observable } from 'rxjs';
 })
 export class NavBarComponent implements OnInit {
 
-  toggleFlag$:Observable<boolean>;
-
-  constructor(private store:Store<AppState>) { 
-    this.toggleFlag$ = this.store.pipe(select(state => state.helper.toggleFlag));
+  @Input() toggleFlag:boolean;
+  @Output() navClick = new EventEmitter()
+ 
+  constructor() { 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
+  navClicked() {
+    this.navClick.emit();
+  }
 
 }

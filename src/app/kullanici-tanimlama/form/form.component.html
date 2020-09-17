@@ -1,0 +1,86 @@
+<form *ngIf="formTipi === 1" [formGroup]="form">
+    <div class="main-form-group">
+        <h2 *ngIf="form.get('TIPI').value === 1">Kullanıcı Ekle</h2>
+        <h2 *ngIf="form.get('TIPI').value === 2">Grup Ekle</h2>
+        <div class="input-container">
+            <mat-form-field appearance="standard">
+                <mat-label>Ad</mat-label>
+                <input formControlName="ADI" matInput
+                type="text" name="adi" autocomplete="off">
+            </mat-form-field> 
+            <mat-form-field appearance="standard">
+                <mat-label>Cinsiyet</mat-label>
+                <mat-select formControlName="CINSIYETI" name="cinsiyet">
+                    <mat-option value="Erkek">Erkek</mat-option>
+                    <mat-option value="Kadın">Kadın</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Email</mat-label>
+                <input formControlName="EMAIL" matInput
+                name="email" type="text" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Sifre</mat-label>
+                <input formControlName="SIFRESI" matInput
+                 name="sifre" type="password">
+            </mat-form-field>    
+        </div>
+        
+        <div class="buttons">
+            <button class="btn btn-danger" (click)="vazgecClicked()">Vazgeç</button>
+            <button class="btn btn-info" type="reset">Temizle</button>
+            <button class="btn btn-success" type="submit" (click)="onSubmitted()">Ekle</button>
+        </div>
+    </div>
+</form>
+
+<form *ngIf="formTipi === 2" [formGroup]="subForm">
+    <div class="sub-form-wrapper">
+        <div *ngIf="tipi === 2" class="form-container">
+            <mat-form-field  class="kullanici-options">
+                <input type="text" matInput
+                placeholder="Gruba kullanıcı ekle"
+                formControlName="KULLANICI"
+                [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option style="font-size: 12px;"
+                    *ngFor="let kullanici of kullaniciOptions$ | async | searchOptions:subForm.get('KULLANICI')?.value?.adi" 
+                    [value]="kullanici">
+                        {{kullanici.adi}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <button class="btn btn-primary add-button" (click)="addItem()">Ekle</button>
+        </div>
+       <div *ngIf="tipi === 1" class="form-container">
+            <mat-form-field class="group-options">
+                <input type="text" matInput
+                placeholder="Kullanıcıya grup ekle"
+                formControlName="GRUP"
+                [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let grup of grupOptions$ | async" [value]="grup">
+                        {{grup.adi}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <button class="btn btn-primary add-button" (click)="addItem()">Ekle</button>
+       </div>
+        
+        <div *ngIf="selectedItems.length > 0" class="selected-items">
+            <ul>
+                <li class="list" *ngFor="let item of selectedItems">
+                    {{item.adi}}
+                    <button class="btn btn-danger delete-button" 
+                    (click)="deleteItem(item.id)">Sil</button></li>
+            </ul>
+        </div>
+        <div class="buttons">
+            <button class="btn btn-danger" (click)="vazgecClicked()">Vazgeç</button>
+            <button class="btn btn-info" (click)="listeyiTemizle()">Listeyi Temizle</button>
+            <button *ngIf="tipi === 1" class="btn btn-success" type="submit" (click)="kullaniciyaGrupEkle()">Onayla</button>
+            <button *ngIf="tipi === 2" class="btn btn-success" type="submit" (click)="grubaKullaniciEkle()">Onayla</button>
+        </div>
+    </div>
+</form>

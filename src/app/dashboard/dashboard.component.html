@@ -1,14 +1,28 @@
-<div class="main row">
-    <div class="sub col">
-        
+<div class="d-flex flex-column main-container">
+    <div class="top-section mb-3">
+        <div class="w-100 d-flex justify-content-between header-section">
+            <h1 class="h3">Anasayfa</h1> 
+            <div class="form-group has-search">
+                <span class="fa fa-search small form-control-feedback"></span>
+                <input type="search" [(ngModel)]="searchText" name="searchText"
+                class="form-control" placeholder="Ara...">
+            </div>
+        </div>
+        <mat-form-field class="ml-3 mt-3" appearance="standard">
+            <mat-label>Tarihe Göre Filtrele</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate placeholder="Start date">
+              <input matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
     </div>
-    <div class="sub col">
-        
-    </div>
-    <div class="sub col">
-        
-    </div>
-    <div class="sub col">
-        
+    <div class="content-wrapper">
+        <div class="hospital-list-section row">
+            <div *ngFor="let item of hospitalItems | searchOptions:searchText " class="hospital-item-section col-12 col-md-6">
+                <app-hospital-item [searchText]="searchText" [item]="item"></app-hospital-item>
+            </div>
+        </div>
     </div>
 </div>
